@@ -1,0 +1,81 @@
+SCRIPTS_PATH='~/sites/cookbook/scripts'
+
+#Budler
+alias be='bundle exec'
+
+#Directories
+alias docs='cd ~/dropbox/documents'
+alias home='cd ~/'
+
+#GIT
+alias git=hub
+alias gcp='git cherry-pick'
+alias gmf=$SCRIPTS_PATH/git_merge_pull_request.sh
+alias gps='staging deploy'
+alias gpp='production deploy'
+alias gpr='git pull-request -c'
+alias grbi='git rebase -i'
+
+#Heroku
+alias hc='staging console'
+alias hcp='production console'
+alias hm='staging migrate'
+alias hmp='production migrate'
+alias hlg='staging tail'
+alias hlgp='production tail'
+
+#NGROK
+alias ngk='~/sites/src/ngrok http -hostname=ngrok.dvelp.co.uk -region eu'
+
+#PARITY
+alias drp='development restore production'
+alias drs='development restore staging'
+
+#Rails
+alias rc='rails c'
+alias rg='rails g'
+
+#Rails-rake
+alias rk='rake'
+alias rkm='rake db:migrate'
+alias rkr='rake db:rollback'
+alias rks='rake db:setup'
+
+#Rails-rspec
+alias rspc='rspec spec'
+
+#Sites
+alias sbackups='cd ~/sites/backups'
+alias sadyn='cd ~/sites/client/adyn/adyn'
+alias sbhub='cd ~/sites/client/blackline-hub'
+alias sbam='cd ~/sites/client/braid-mackenzie'
+alias sbam-shop='cd ~/sites/client/braid-mackenzie-shopify'
+alias scurador='cd ~/sites/client/curador'
+alias sgli='cd ~/sites/client/gli'
+alias shbm='cd ~/sites/client/heybigman'
+alias shtml='cd ~/sites/client/html'
+alias shtml-blackline='cd ~/sites/client/html/blackline'
+alias shtml-calf='cd ~/sites/client/html/calf-and-co'
+alias shtml-cherry='cd ~/sites/client/html/cherry-london'
+alias shtml-mander='cd ~/sites/client/html/mander'
+alias skays='cd ~/sites/client/kays/server'
+alias snhm='cd ~/sites/client/nhm'
+alias speriplus='cd ~/sites/client/periplus'
+alias spitch='cd ~/sites/client/pitch-hub'
+alias spump='cd ~/sites/client/pump-court'
+alias srvm='cd ~/sites/client/roryvanmillingen'
+alias sshop='cd ~/sites/client/shopify'
+alias sshop-calf='cd ~/sites/client/shopify/calf-and-co'
+alias sshop-wit='cd ~/sites/client/shopify/wit'
+alias ssoho='cd ~/sites/client/soho-house-reporter'
+alias sdirty='cd ~/sites/client/spacejam'
+alias shot='cd ~/sites/client/studentglitch'
+alias stckc='cd ~/sites/client/tckc'
+alias stribe='cd ~/sites/client/tribe'
+
+#VIM
+alias v='vim'
+
+#ZSH
+alias relaod=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"

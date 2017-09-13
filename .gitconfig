@@ -1,0 +1,11 @@
+[commit]
+  template = ~/.gitmessage
+[core]
+  editor = /usr/local/bin/vim
+[format]
+  pretty = fuller
+[push]
+  default = simple
+[user]
+  name = Tom Mullen
+  email = tom@dvelp.co.uk

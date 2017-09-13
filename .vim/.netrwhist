@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/Tom/Sites/tribe/app/services'
+let g:netrw_dirhist_2='/Users/Tom/Sites/tribe/app/services/code_storm_api'
+let g:netrw_dirhist_3='/Users/Tom/Sites/tribe/app/services/code_storm_api/serializers'
+let g:netrw_dirhist_4='/Users/Tom/Sites/tribe/app/services/code_storm_api'
+let g:netrw_dirhist_5='/Users/Tom/Sites/kays/app/views/admin/reports'
+let g:netrw_dirhist_6='/Users/Tom/Sites/dopay-payment-bridge/db/migrate'
+let g:netrw_dirhist_7='/Users/Tom/Sites/wit-customer-support/lib'

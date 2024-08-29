@@ -25,3 +25,6 @@
   path = ~/.gitconfig.local
 [diff]
   colorMoved = zebra
+[user]
+	name = Tom Mullen
+	email = tom@dvelp.co.uk

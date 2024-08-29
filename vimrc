@@ -5,17 +5,15 @@
 let g:ale_linters = {
 \ 'javascript': []
 \ }
-let g:ale_ruby_rails_best_practices_executable = 'bundle'
-let g:ale_ruby_rubocop_executable = 'bundle'
 
 nmap <silent> [r <Plug>(ale_previous_wrap)
 nmap <silent> ]r <Plug>(ale_next_wrap)
 
 set updatetime=1000
-autocmd CursorHold * call ale#Lint()
-autocmd CursorHoldI * call ale#Lint()
-autocmd InsertLeave * call ale#Lint()
-autocmd TextChanged * call ale#Lint()
+autocmd CursorHold * call ale#Queue(0)
+autocmd CursorHoldI * call ale#Queue(0)
+autocmd InsertLeave * call ale#Queue(0)
+autocmd TextChanged * call ale#Queue(0)
 let g:ale_lint_on_text_changed = 0
 
 " airLine
@@ -24,9 +22,6 @@ let g:airline_theme = 'bubblegum'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
 let g:airline#extensions#syntastic#enabled = 1
-let g:airline_section_b = "%f%m"
-let g:airline_section_c = "%{fugitive#head()}" "display git branch
-let g:airline_section_z = '%3l:%3v'
 
 " ctrlp
 " use silver_searcher for lookup
@@ -50,13 +45,9 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " APPEARANCE
 " --------------------
 syntax enable
+set background=dark
+set t_Co=16
 colorscheme solarized
-" switch background
-if has('gui_running')
-  set background=light
-else
-  set background=dark
-endif
 
 " make it obvious where 80 characters is
 set textwidth=80
@@ -142,6 +133,7 @@ map <Leader>f :Ack<space>
 map <Leader>fc :Ack <C-R><C-W><cr>
 map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
 map <Leader>l :call RunLastSpec()<cr>
+map <Leader>nn :nonumber<cr>
 map <Leader>q :copen<cr>
 map <Leader>p :set paste<cr><esc>"*]p:set nopaste<cr>
 map <Leader>ra :%s/
@@ -164,3 +156,10 @@ function! RenameFile()
   endif
 endfunction
 map <Leader>n :call RenameFile()<cr>
+
+" toggle line and relative numbers
+function! ToggleLineNumbers()
+  exec ':set nu!'
+  exec ':set relativenumber!'
+endfunction
+map <Leader>nn :call ToggleLineNumbers()<cr>

@@ -28,7 +28,7 @@ alias hlgp='production tail'
 alias hsc=$SCRIPTS_PATH/heroku_sync_config.sh
 
 #NGROK
-alias ngk='~/code/src/ngrok http'
+alias ngk='ngrok http --region=eu --hostname=ngrok.dvelp.co.uk'
 
 #PARITY
 alias drp='development restore production'

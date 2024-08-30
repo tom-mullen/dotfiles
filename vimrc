@@ -1,70 +1,13 @@
 " --------------------
-" PACKAGES
-" --------------------
-" ale
-let g:ale_linters = {
-\ 'javascript': []
-\ }
-
-nmap <silent> [r <Plug>(ale_previous_wrap)
-nmap <silent> ]r <Plug>(ale_next_wrap)
-
-set updatetime=1000
-autocmd CursorHold * call ale#Queue(0)
-autocmd CursorHoldI * call ale#Queue(0)
-autocmd InsertLeave * call ale#Queue(0)
-autocmd TextChanged * call ale#Queue(0)
-let g:ale_lint_on_text_changed = 0
-
-" airLine
-set laststatus=2
-let g:airline_theme = 'bubblegum'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline#extensions#syntastic#enabled = 1
-
-" ctrlp
-" use silver_searcher for lookup
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-endif
-let g:ctrlp_use_caching = 0
-set timeoutlen=500 " reduce wait time for amigigous chars
-
-" jshint
-" only check syntax on write
-let JSHintUpdateWriteOnly = 1
-
-" rspec
-let g:rspec_command = "VtrSendCommandToRunner! rspec {spec}"
-
-" silver_searcher
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
-" --------------------
-" APPEARANCE
-" --------------------
-syntax enable
-set background=dark
-set t_Co=16
-colorscheme solarized
-
-" make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=+1
-highlight ColorColumn ctermbg=235 guibg=#2c2d27
-
-" --------------------
 " CONFIG
 " --------------------
-imap <c-space> <c-x><c-o>
-let g:bufferline_echo = 0 " don't show standard budder
 
-" disable the arrow keys
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+imap <c-space> <c-x><c-o>
+
+" colorscheme
+syntax enable
+let g:dracula_colorterm = 0
+colorscheme dracula
 
 " map semi-colon to colon
 nnoremap ; :
@@ -79,7 +22,6 @@ set directory=/tmp " don't clutter my dirs up with swp and tmp files
 set et|retab
 set encoding=utf-8
 set expandtab
-set grepprg=ag " use sliver_searcher instead of grep
 set gdefault " assume the /g flag on :s substitutions to replace all matches
 set incsearch
 set laststatus=2  " always show status line.
@@ -126,24 +68,22 @@ nnoremap <Leader>irb :VtrOpenRunner {'orientation': 'h', 'percentage': 50, 'cmd'
 nnoremap <Leader>sf :VtrSendFile<cr>
 nnoremap <Leader>sl :VtrSendLinesToRunner<cr>
 
-map <Leader>a :call RunAllSpecs()<cr>
+" Map Ctrl + p to open Telescope
+nnoremap <c-p> :Telescope find_files<cr>
+"remove highlight on hitting enter
+cnoremap <silent> <cr> <cr>:nohl<cr>
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
 map <Leader>bb :!bundle install<cr>
 map <Leader>e :w<cr>:Explore<cr>
-map <Leader>f :Ack<space>
-map <Leader>fc :Ack <C-R><C-W><cr>
-map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
-map <Leader>l :call RunLastSpec()<cr>
+map <Leader>fc :Telescope grep_string<cr>
 map <Leader>nn :nonumber<cr>
 map <Leader>q :copen<cr>
 map <Leader>p :set paste<cr><esc>"*]p:set nopaste<cr>
 map <Leader>ra :%s/
-map <Leader>s :call RunNearestSpec()<cr>
 map <Leader>sc :sp db/schema.rb<cr>
 map <Leader>sl :sort<cr>
-map <Leader>t :call RunCurrentSpecFile()<cr>
-map <Leader>u :Eunittest<cr>
 map <Leader>v :vsp<cr>
-map <Leader>vi :tabe ~/Dropbox/dotfiles/.vimrc<cr>
 
 " rename current file - thanks Gary Bernhardt
 function! RenameFile()

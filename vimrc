@@ -75,11 +75,15 @@ cnoremap <silent> <cr> <cr>:nohl<cr>
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 map <Leader>bb :!bundle install<cr>
-map <Leader>e :w<cr>:Explore<cr>
+map <Leader>e :NvimTreeFindFile<cr>
+map <Leader>we :NvimTreeToggle<cr>
+map <Leader>f :Telescope live_grep<cr>
 map <Leader>fc :Telescope grep_string<cr>
 map <Leader>nn :nonumber<cr>
 map <Leader>q :copen<cr>
 map <Leader>p :set paste<cr><esc>"*]p:set nopaste<cr>
+" prevent paste from yanking text
+xnoremap p P
 map <Leader>ra :%s/
 map <Leader>sc :sp db/schema.rb<cr>
 map <Leader>sl :sort<cr>

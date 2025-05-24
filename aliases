@@ -12,8 +12,13 @@ alias gcp='git cherry-pick'
 alias gmf=$SCRIPTS_PATH/git-merge-pull-request.sh
 alias gps='staging deploy'
 alias gpp='production deploy'
-alias gpr='git pull-request -c'
+alias gpr='git pull --rebase'
 alias grbi='git rebase -i'
+
+#Kamal
+alias kc='kamal console'
+alias kd='kamal deploy'
+alias ks='kamal setup'
 
 #Rails
 alias rc='rails c'
@@ -29,5 +34,10 @@ alias tmux-session-switch=$SCRIPTS_PATH/tmux-session-switch.sh
 alias v='nvim'
 alias vim='nvim'
 
+#VPN
+alias vpn-raya='sudo openvpn --config ~/.vpn/dopay-raya'
+alias vpn-tm-up='wg-quick up DM'
+alias vpn-tm-down='wg-quick down DM'
+
 #ZSH
-alias relaod=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"

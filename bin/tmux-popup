@@ -3,8 +3,5 @@
 width=${2:-85%}
 height=${3:-95%}
 
-# If no command provided, open a shell
-cmd="${1:-zsh}"
-
-# Open the tmux popup and execute the command
-tmux display-popup -d '#{pane_current_path}' -xC -yC -w"$width" -h"$height" -E "$cmd"
+tmux display-popup -d '#{pane_current_path}' -xC -yC -w"$width" -h"$height" "zsh -i -c '$1'"
+exit 0

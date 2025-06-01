@@ -1,0 +1,85 @@
+# Standard Innovation Alacritty Theme
+# Brand colors:
+# --color-green-teal: rgb(23, 58, 63)     = #173A3F
+# --color-gray-light: rgb(246, 251, 253)  = #F6FBFD
+# --color-gray-blue: rgb(217, 238, 246)   = #D9EEF6
+# --color-black-nearly: rgb(10, 10, 10)   = #0A0A0A
+# --color-green-lime: rgb(201, 255, 134)  = #C9FF86
+# --color-green-neon: rgb(0, 255, 203)    = #00FFCB
+# --color-green-camo: rgb(104, 148, 129)  = #689481
+
+[colors.primary]
+background = "#212C2A"           # green-teal
+foreground = "#689481"           # green-camo
+dim_foreground = "#D9EEF6"       # gray-blue
+bright_foreground = "#FFFFFF"    # white
+
+[colors.cursor]
+text = "#0A0A0A"                 # black-nearly
+cursor = "#689481"               # green-neon
+
+[colors.vi_mode_cursor]
+text = "#0A0A0A"                 # black-nearly
+cursor = "#00FFCB"               # green-lime
+
+[colors.search.matches]
+foreground = "#0A0A0A"           # black-nearly
+background = "#689481"           # green-camo
+
+[colors.search.focused_match]
+foreground = "#0A0A0A"           # black-nearly
+background = "#C9FF86"           # green-lime
+
+[colors.footer_bar]
+foreground = "#0A0A0A"           # black-nearly
+background = "#689481"           # green-camo
+
+[colors.hints.start]
+foreground = "#0A0A0A"           # black-nearly
+background = "#00FFCB"           # green-neon
+
+[colors.hints.end]
+foreground = "#0A0A0A"           # black-nearly
+background = "#689481"           # green-camo
+
+[colors.selection]
+text = "#0A0A0A"                 # black-nearly
+background = "#00FFCB"           # green-neon
+
+[colors.normal]
+black = "#212C2A"                # green-teal
+red = "#FF6B6B"                  # soft red
+green = "#689481"                # green-camo
+yellow = "#C9FF86"               # green-lime
+blue = "#4ECDC4"                 # teal blue
+magenta = "#FF80BF"              # soft magenta
+cyan = "#00FFCB"                 # green-neon
+white = "#F6FBFD"                # gray-light
+
+[colors.bright]
+black = "#689481"                # green-camo
+red = "#FF9999"                  # bright red
+green = "#C9FF86"                # green-lime (same as normal for consistency)
+yellow = "#FFF099"               # bright yellow
+blue = "#7FE0DB"                 # bright teal
+magenta = "#FFB3D9"              # bright magenta
+cyan = "#66FFE0"                 # bright neon
+white = "#FFFFFF"                # pure white
+
+[colors.dim]
+black = "#0F2629"                # darker teal
+red = "#CC5555"                  # dim red
+green = "#A3CC6B"                # dim lime
+yellow = "#CCB85A"               # dim yellow
+blue = "#3FA39C"                 # dim teal
+magenta = "#CC6699"              # dim magenta
+cyan = "#00CCA3"                 # dim neon
+white = "#D9EEF6"                # gray-blue
+
+[[colors.indexed_colors]]
+index = 16
+color = "#689481"                # green-camo
+
+[[colors.indexed_colors]]
+index = 17
+color = "#C9FF86"                # green-lime

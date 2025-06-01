@@ -1,5 +1,8 @@
 SCRIPTS_PATH='~/dotfiles/scripts'
 
+# Automation
+alias ds="tmux-popup 'daily-summary'"
+
 #Budler
 alias be='bundle exec'
 
@@ -29,6 +32,7 @@ alias rspc='rspec spec'
 
 #TMUX
 alias tmux-session-switch=$SCRIPTS_PATH/tmux-session-switch.sh
+alias tp="tmux-popup"
 
 #VIM
 alias v='nvim'

@@ -2,15 +2,12 @@
 # This file is sourced for both interactive and non-interactive shells
 
 # Homebrew setup (for Apple Silicon Macs)
-if [ -f "/opt/homebrew/bin/brew" ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Add custom bin from dotfiles
 export PATH="$HOME/bin:$PATH"
 
-# Set default editor
-export EDITOR="nvim"
-
-# Disable Homebrew auto-update for faster commands
+# Add homebrew binaries
+export PATH="/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export HOMEBREW_NO_AUTO_UPDATE=1

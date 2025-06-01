@@ -1,13 +1,12 @@
-" --------------------
-" CONFIG
+" -------------------- CONFIG
 " --------------------
 
 imap <c-space> <c-x><c-o>
 
 " colorscheme
+set termguicolors
 syntax enable
-let g:dracula_colorterm = 0
-colorscheme dracula
+colorscheme standard_innovation
 
 " map semi-colon to colon
 nnoremap ; :
@@ -107,3 +106,15 @@ function! ToggleLineNumbers()
   exec ':set relativenumber!'
 endfunction
 map <Leader>nn :call ToggleLineNumbers()<cr>
+
+" --------------------
+" TEST RUNNING (vim-test)
+" --------------------
+" Run test nearest to cursor
+nmap <silent> <Leader>t :TestNearest<CR>
+" Run tests in current file
+nmap <silent> <Leader>T :TestFile<CR>
+" Run last test
+nmap <silent> <Leader>l :TestLast<CR>
+" Visit the last run test file
+nmap <silent> <Leader>g :TestVisit<CR>

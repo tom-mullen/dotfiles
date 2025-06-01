@@ -9,6 +9,7 @@ brew "tree-sitter"        # Parser generator tool
 brew "stow"               # Symlink farm manager
 
 # Terminal & Shell
+brew "zsh"                # Modern shell (ensures latest version)
 brew "tmux"               # Terminal multiplexer
 brew "zplug"              # Zsh plugin manager
 brew "neovim"             # Modern Vim

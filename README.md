@@ -1,55 +1,79 @@
 # dotfiles
 
-Get your machine purring with this selection of dotfiles.
+Modern dotfiles managed with GNU Stow for clean, organized configuration management.
+
+## Features
+
+- **Stow-managed packages**: Organized by application for selective installation
+- **Comprehensive Brewfile**: All development dependencies in one place
+- **One-command setup**: Automated installation script
+- **Clean symlinks**: No cluttered home directory
+
+## Quick Start
+
+```bash
+git clone https://github.com/tom-mullen/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+./setup.sh
+```
+
+That's it! The setup script will:
+- Install Homebrew (if needed)
+- Install all packages from Brewfile
+- Create symlinks for all configurations
+
+## Manual Installation
+
+If you prefer manual control:
+
+1. **Install dependencies**:
+   ```bash
+   brew bundle
+   ```
+
+2. **Install all packages**:
+   ```bash
+   stow -t ~ */
+   ```
+
+3. **Or install selectively**:
+   ```bash
+   stow -t ~ git vim tmux zsh  # Just the essentials
+   ```
+
+## Package Structure
+
+- `alacritty/` - Terminal emulator config
+- `git/` - Git config and lazygit settings
+- `nvim/` - Neovim configuration
+- `tmux/` - Terminal multiplexer config
+- `vim/` - Vim configuration
+- `zsh/` - Shell configuration and aliases
+
+## Managing Packages
+
+```bash
+# Add new package
+stow -t ~ package_name
+
+# Remove package
+stow -t ~ -D package_name
+
+# Restow all packages
+stow -t ~ -R */
+```
 
 ## Requirements
 
-Use zsh as your default shell:
-
-```
-chsh -s $(which zsh)
-```
-
-Install [rcm](https://github.com/thoughtbot/rcm):
-
-```
-brew tap thoughtbot/formulae
-brew install rcm
-```
-
-## Installation
-
-```
-git clone https://github.com/DVELP/dotfiles.git ~/dotfiles
-```
-
-Install the dotfiles with rcm:
-
-```
-env RCRC=$HOME/dotfiles/rcrc rcup
-```
-
-After the initial installation, you can run rcup without the one-time variable
-RCRC being set (rcup will symlink the repo's rcrc to ~/.rcrc for future runs of
-rcup). See example.
-
-This command will create symlinks for config files in your home directory.
-Setting the RCRC environment variable tells rcup to use standard configuration
-options:
-
-* Exclude the README.md and LICENSE files, which are part of the dotfiles
-repository but do not need to be symlinked in.
-* Give precedence to personal overrides which by default are placed in
-~/dotfiles-local
-* Please configure the rcrc file if you'd like to make personal overrides in a
-different directory
+- macOS (tested on Apple Silicon)
+- Zsh as default shell: `chsh -s $(which zsh)`
 
 ## Update
 
-You can update your dotfiles by pulling the repo and running:
-
-```
-rcup
+```bash
+cd ~/dotfiles
+git pull
+./setup.sh  # Re-run to get any new packages
 ```
 
 ## License

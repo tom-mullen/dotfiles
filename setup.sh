@@ -63,7 +63,7 @@ fi
 # Create symlinks with Stow
 echo "🔗 Creating symlinks with Stow..."
 
-PACKAGES="alacritty git git_template gtk iterm2 mise nvim rclone tmux vim zsh"
+PACKAGES="alacritty claude git git_template gtk iterm2 mise nvim rclone tmux vim zsh"
 
 echo "📋 Packages to stow: $PACKAGES"
 

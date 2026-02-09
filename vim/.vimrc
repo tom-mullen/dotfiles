@@ -1,12 +1,12 @@
 " -------------------- CONFIG
 " --------------------
 
-imap <c-space> <c-x><c-o>
-
 " colorscheme
+set runtimepath+=~/dotfiles/vim/pack/themes/start/dracula_pro
 set termguicolors
 syntax enable
-colorscheme standard_innovation
+let g:dracula_colorterm = 0
+colorscheme dracula_pro
 
 " map semi-colon to colon
 nnoremap ; :
@@ -62,43 +62,28 @@ let mapleader = ","
 noremap j gj
 noremap k gk
 
-" vim-tmux-runner
-nnoremap <Leader>irb :VtrOpenRunner {'orientation': 'h', 'percentage': 50, 'cmd': 'irb'}<cr>
-nnoremap <Leader>sf :VtrSendFile<cr>
-nnoremap <Leader>sl :VtrSendLinesToRunner<cr>
-
-" Map Ctrl + p to open Telescope
-nnoremap <c-p> :Telescope find_files<cr>
+" Map Ctrl + p to open Telescope frecency (smart file finder)
+nnoremap <c-p> :Telescope frecency workspace=CWD theme=ivy<cr>
 "remove highlight on hitting enter
 cnoremap <silent> <cr> <cr>:nohl<cr>
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 map <Leader>bb :!bundle install<cr>
-map <Leader>e :NvimTreeFindFile<cr>
-map <Leader>we :NvimTreeToggle<cr>
+map <Leader>ec :Vcontroller<cr>
+map <Leader>em :Vmodel<cr>
+map <Leader>ev :Vview<cr>
+map <Leader>ef :NvimTreeFindFile<cr>
+map <Leader>ew :NvimTreeToggle<cr>
 map <Leader>f :Telescope live_grep<cr>
 map <Leader>fc :Telescope grep_string<cr>
 map <Leader>nn :nonumber<cr>
 map <Leader>q :copen<cr>
 map <Leader>p :set paste<cr><esc>"*]p:set nopaste<cr>
-" prevent paste from yanking text
-xnoremap p P
+xnoremap p P " prevent paste from yanking text
 map <Leader>ra :%s/
 map <Leader>sc :sp db/schema.rb<cr>
 map <Leader>sl :sort<cr>
 map <Leader>v :vsp<cr>
-
-" rename current file - thanks Gary Bernhardt
-function! RenameFile()
-  let old_name = expand('%')
-  let new_name = input('New file name: ', expand('%'), 'file')
-  if new_name != '' && new_name != old_name
-    exec ':saveas ' . new_name
-    exec ':silent !rm ' . old_name
-    redraw!
-  endif
-endfunction
-map <Leader>n :call RenameFile()<cr>
 
 " toggle line and relative numbers
 function! ToggleLineNumbers()
@@ -110,11 +95,18 @@ map <Leader>nn :call ToggleLineNumbers()<cr>
 " --------------------
 " TEST RUNNING (vim-test)
 " --------------------
-" Run test nearest to cursor
-nmap <silent> <Leader>t :TestNearest<CR>
-" Run tests in current file
-nmap <silent> <Leader>T :TestFile<CR>
-" Run last test
-nmap <silent> <Leader>l :TestLast<CR>
-" Visit the last run test file
-nmap <silent> <Leader>g :TestVisit<CR>
+nmap <silent> <Leader>t :TestNearest<CR> " Run test nearest to cursor
+nmap <silent> <Leader>T :TestFile<CR> " Run tests in current file
+nmap <silent> <Leader>tl :TestLast<CR> " Run last test
+nmap <silent> <Leader>tf :TestVisit<CR> " Visit the last run test file
+
+" --------------------
+" VIM-LOCALORIE
+" --------------------
+nmap <Leader>i :call localorie#translate()<CR> " Show all translations for i18n key under cursor
+nmap <Leader>dt :echo localorie#expand_key()<CR> " Show full key path in locale file
+let g:localorie = {
+      \ 'quickfix':  1,
+      \ 'switch':    1
+      \ }
+

@@ -10,13 +10,16 @@ alias be='bundle exec'
 alias home='cd ~/'
 
 #GIT
-alias gcl='gh repo clone'
 alias gcp='git cherry-pick'
 alias gmf=$SCRIPTS_PATH/git-merge-pull-request.sh
 alias gps='staging deploy'
 alias gpp='production deploy'
-alias gpr='git pull --rebase'
+alias gup='gpr'
 alias grbi='git rebase -i'
+
+#GIT HUB
+alias ghcl='gh repo clone'
+alias ghprv='gh pr view --web'
 
 #Kamal
 alias kc='kamal console'
@@ -40,6 +43,8 @@ alias vim='nvim'
 
 #VPN
 alias vpn-raya='sudo openvpn --config ~/.vpn/dopay-raya'
+alias vpn-dopay-raya='sudo -v && op read "op://Private/dopay-cairo-vpn/password" | sudo openfortivpn -c ~/.vpn/dopay-cairo.conf'
+alias vpn-dopay-raya='sudo -v && op read "op://Private/dopay-raya-vpn/password" | sudo openfortivpn -c ~/.vpn/dopay-raya.conf'
 alias vpn-tm-up='wg-quick up DM'
 alias vpn-tm-down='wg-quick down DM'
 

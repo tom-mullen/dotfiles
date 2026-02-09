@@ -13,6 +13,7 @@ brew "zsh"                # Modern shell (ensures latest version)
 brew "tmux"               # Terminal multiplexer
 brew "zplug"              # Zsh plugin manager
 brew "neovim"             # Modern Vim
+brew "fzf"                # Fuzzy finder (used by zsh keybindings)
 
 # Language Management & Development
 brew "mise"               # Runtime version manager (replaces rbenv, nvm, etc)
@@ -51,3 +52,4 @@ brew "sqlite"
 cask "1password-cli"      # 1Password CLI
 cask "alacritty"          # GPU-accelerated terminal
 cask "google-cloud-sdk"   # Google Cloud SDK
+cask "font-sauce-code-pro-nerd-font"  # Nerd Font for Alacritty

@@ -72,6 +72,13 @@ for package in $PACKAGES; do
     stow -d "$DOTFILES_DIR" -t "$HOME" "$package"
 done
 
+# Configure Docker Desktop to start on login
+if [[ -d "/Applications/Docker.app" ]]; then
+    echo "🐳 Enabling Docker Desktop to start on login..."
+    osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Docker.app", hidden:true}' 2>/dev/null || true
+    echo "✅ Docker Desktop will start on login."
+fi
+
 echo ""
 echo "✅ Dotfiles setup complete!"
 echo ""

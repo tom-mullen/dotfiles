@@ -23,11 +23,7 @@ brew "node"               # JavaScript runtime
 brew "awscli"             # AWS CLI
 brew "doctl"              # DigitalOcean CLI
 brew "rclone"             # Cloud storage sync
-brew "docker"             # Container platform
-brew "docker-buildx"      # Docker build enhancements
-brew "docker-completion"  # Docker completion
-brew "colima"             # Container runtime for macOS
-brew "lima"               # Linux VMs for macOS
+cask "docker"             # Docker Desktop
 
 # Database
 brew "postgresql@14"      # PostgreSQL database

@@ -71,7 +71,7 @@ mise install
 # Create symlinks with Stow
 echo "🔗 Creating symlinks with Stow..."
 
-PACKAGES="alacritty claude docker git git_template gtk mise nvim rclone tmux vim zsh"
+PACKAGES="alacritty bin claude docker git git_template gtk mise nvim rclone tmux vim zsh"
 
 echo "📋 Packages to stow: $PACKAGES"
 

@@ -60,6 +60,14 @@ else
     echo "✅ zsh-autocomplete already installed."
 fi
 
+# Set up fzf shell integration (key bindings and completion)
+echo "🔍 Setting up fzf..."
+"$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc --no-bash --no-fish
+
+# Install mise runtimes
+echo "📦 Installing mise runtimes..."
+mise install
+
 # Create symlinks with Stow
 echo "🔗 Creating symlinks with Stow..."
 

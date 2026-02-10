@@ -1,8 +1,5 @@
 SCRIPTS_PATH='~/dotfiles/scripts'
 
-# Automation
-alias ds="tmux-popup 'daily-summary'"
-
 #Budler
 alias be='bundle exec'
 
@@ -11,7 +8,6 @@ alias home='cd ~/'
 
 #GIT
 alias gcp='git cherry-pick'
-alias gmf=$SCRIPTS_PATH/git-merge-pull-request.sh
 alias gps='staging deploy'
 alias gpp='production deploy'
 alias gup='gpr'

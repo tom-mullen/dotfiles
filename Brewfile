@@ -22,6 +22,7 @@ brew "node"               # JavaScript runtime
 brew "awscli"             # AWS CLI
 brew "doctl"              # DigitalOcean CLI
 brew "rclone"             # Cloud storage sync
+brew "cloudflared"        # Cloudflare Tunnel client
 cask "docker"             # Docker Desktop
 
 # Database

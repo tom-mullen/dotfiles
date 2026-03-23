@@ -1,0 +1,11 @@
+gcloud/
+**/logs/
+**/*.db
+**/*.log
+.last_opt_in_prompt.yaml
+.last_survey_prompt.yaml
+.last_update_check.json
+access_tokens.db
+credentials.db
+adc.json
+.boto

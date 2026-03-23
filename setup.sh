@@ -71,7 +71,7 @@ mise install
 # Create symlinks with Stow
 echo "🔗 Creating symlinks with Stow..."
 
-PACKAGES="alacritty bin claude docker git git_template gtk mise nvim rclone tmux vim zsh"
+PACKAGES="alacritty bin claude docker git git_template gtk macos mise nvim rclone tmux vim zsh"
 
 echo "📋 Packages to stow: $PACKAGES"
 
@@ -79,6 +79,23 @@ for package in $PACKAGES; do
     echo "   Stowing $package..."
     stow -d "$DOTFILES_DIR" -t "$HOME" "$package"
 done
+
+# Set up hourly dotfiles sync (macOS only)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "⏰ Setting up hourly dotfiles sync..."
+    chmod +x "$DOTFILES_DIR/bin/bin/dotfiles-sync"
+    
+    LAUNCH_AGENTS_DIR="$HOME/Library/LaunchAgents"
+    PLIST_NAME="com.user.dotfiles-sync.plist"
+    
+    mkdir -p "$LAUNCH_AGENTS_DIR"
+    ln -sf "$DOTFILES_DIR/macos/$PLIST_NAME" "$LAUNCH_AGENTS_DIR/$PLIST_NAME"
+    
+    # Unload if already loaded to avoid errors
+    launchctl unload "$LAUNCH_AGENTS_DIR/$PLIST_NAME" 2>/dev/null || true
+    launchctl load "$LAUNCH_AGENTS_DIR/$PLIST_NAME"
+    echo "✅ Hourly sync agent loaded."
+fi
 
 # Configure Docker Desktop to start on login
 if [[ -d "/Applications/Docker.app" ]]; then

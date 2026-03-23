@@ -1,0 +1,13 @@
+#!/bin/bash
+# Creates filler panes on left and right to center the main pane.
+# Only runs on 5K displays (width >= 5000px).
+
+max_width=$(system_profiler SPDisplaysDataType 2>/dev/null \
+  | grep -o '[0-9]* x [0-9]*' \
+  | awk -F' x ' '{print $1}' \
+  | sort -rn | head -1)
+[ "${max_width:-0}" -lt 5000 ] && exit 0
+
+tmux split-window -hb -l 20% -c "#{pane_current_path}"
+tmux split-window -h -l 25% -c "#{pane_current_path}"
+tmux select-pane -t 1

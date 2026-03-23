@@ -38,7 +38,7 @@ alias v='nvim'
 alias vim='nvim'
 
 #VPN
-alias vpn-raya='sudo openvpn --config ~/.vpn/dopay-raya'
+alias vpn-raya='sudo openvpn --config ~/.vpn/dopay-raya.conf'
 alias vpn-dopay-raya='sudo -v && op read "op://Private/dopay-cairo-vpn/password" | sudo openfortivpn -c ~/.vpn/dopay-cairo.conf'
 alias vpn-dopay-raya='sudo -v && op read "op://Private/dopay-raya-vpn/password" | sudo openfortivpn -c ~/.vpn/dopay-raya.conf'
 alias vpn-tm-up='wg-quick up DM'

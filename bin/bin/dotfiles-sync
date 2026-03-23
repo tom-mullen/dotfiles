@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+# Standalone dotfiles sync script for manual, tat, and hourly use
+
+DOTFILES_DIR="$HOME/dotfiles"
+LOG_FILE="$HOME/Library/Logs/dotfiles-sync.log"
+
+# Ensure we have the correct PATH for Homebrew and Git
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
+echo "[$(date)] Starting sync..." >> "$LOG_FILE"
+
+cd "$DOTFILES_DIR" || exit 1
+
+# 1. Update Brewfile
+echo "[$(date)] Updating Brewfile..." >> "$LOG_FILE"
+brew bundle dump --force
+
+# 2. Pull latest changes
+echo "[$(date)] Pulling changes..." >> "$LOG_FILE"
+git pull --rebase --quiet
+
+# 3. Commit and push if there are changes
+if [[ -n $(git status --porcelain) ]]; then
+    echo "[$(date)] Changes detected. Pushing..." >> "$LOG_FILE"
+    git add .
+    git commit -m "chore: auto-sync [$(date +'%Y-%m-%d %H:%M:%S')]" --quiet
+    git push --quiet
+    echo "[$(date)] Sync complete." >> "$LOG_FILE"
+else
+    echo "[$(date)] No changes to sync." >> "$LOG_FILE"
+fi

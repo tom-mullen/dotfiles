@@ -15,14 +15,20 @@ cd "$DOTFILES_DIR" || exit 1
 echo "[$(date)] Updating Brewfile..." >> "$LOG_FILE"
 brew bundle dump --force
 
-# 2. Pull latest changes
+# 2. Stash local changes before pulling
+git stash --quiet
+
+# 3. Pull latest changes
 echo "[$(date)] Pulling changes..." >> "$LOG_FILE"
 git pull --rebase --quiet
 
-# 3. Commit and push if there are changes
+# 4. Restore stashed changes
+git stash pop --quiet 2>/dev/null
+
+# 5. Commit and push if there are changes
 if [[ -n $(git status --porcelain) ]]; then
     echo "[$(date)] Changes detected. Pushing..." >> "$LOG_FILE"
-    git add .
+    git add -A
     git commit -m "chore: auto-sync [$(date +'%Y-%m-%d %H:%M:%S')]" --quiet
     git push --quiet
     echo "[$(date)] Sync complete." >> "$LOG_FILE"

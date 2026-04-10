@@ -1,6 +1,7 @@
 tap "homebrew/services"
 brew "aws-c-s3"
 brew "awscli"
+brew "cloudflared"
 brew "doctl"
 brew "fd"
 brew "node"

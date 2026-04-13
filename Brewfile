@@ -26,6 +26,7 @@ brew "openvpn"
 brew "postgresql@14", restart_service: :changed
 brew "rclone"
 brew "ripgrep"
+brew "sqlc"
 brew "stow"
 brew "tmux"
 brew "vips"

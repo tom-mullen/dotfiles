@@ -8,21 +8,8 @@ brew "node"
 brew "gemini-cli"
 brew "gh"
 brew "gitleaks"
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-brew "googleworkspace-cli"
-=======
 brew "go"
 brew "golangci-lint"
->>>>>>> Stashed changes
-=======
-brew "googleworkspace-cli"
->>>>>>> Stashed changes
-=======
-brew "go"
-brew "golangci-lint"
->>>>>>> Stashed changes
 brew "gum"
 brew "shared-mime-info"
 brew "imagemagick"
@@ -49,3 +36,4 @@ cask "1password-cli"
 cask "alacritty"
 cask "gcloud-cli"
 cask "ngrok"
+go "github.com/sqlc-dev/sqlc/cmd/sqlc"

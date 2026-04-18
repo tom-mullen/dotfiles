@@ -1,34 +1,20 @@
 tap "homebrew/services"
 brew "aws-c-s3"
 brew "awscli"
+brew "cloudflared"
 brew "doctl"
 brew "fd"
-brew "fzf"
 brew "node"
 brew "gemini-cli"
 brew "gh"
 brew "gitleaks"
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-brew "googleworkspace-cli"
-=======
 brew "go"
 brew "golangci-lint"
->>>>>>> Stashed changes
-=======
-brew "googleworkspace-cli"
->>>>>>> Stashed changes
-=======
-brew "go"
-brew "golangci-lint"
->>>>>>> Stashed changes
 brew "gum"
 brew "shared-mime-info"
 brew "imagemagick"
 brew "lazygit"
 brew "libgit2"
-brew "libmagic"
 brew "libpq"
 brew "libyaml"
 brew "luarocks"
@@ -40,6 +26,7 @@ brew "openvpn"
 brew "postgresql@14", restart_service: :changed
 brew "rclone"
 brew "ripgrep"
+brew "sqlc"
 brew "stow"
 brew "tmux"
 brew "vips"
@@ -48,5 +35,8 @@ brew "zplug"
 cask "1password-cli"
 cask "alacritty"
 cask "gcloud-cli"
-cask "google-ads-editor"
 cask "ngrok"
+go "golang.org/x/tools/cmd/deadcode"
+go "github.com/securego/gosec/v2/cmd/gosec"
+go "github.com/sqlc-dev/sqlc/cmd/sqlc"
+go "honnef.co/go/tools/cmd/staticcheck"

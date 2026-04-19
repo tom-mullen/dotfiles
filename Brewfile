@@ -8,12 +8,8 @@ brew "node"
 brew "gemini-cli"
 brew "gh"
 brew "gitleaks"
-<<<<<<< Updated upstream
 brew "go"
 brew "golangci-lint"
-=======
-brew "googleworkspace-cli"
->>>>>>> Stashed changes
 brew "gum"
 brew "shared-mime-info"
 brew "imagemagick"

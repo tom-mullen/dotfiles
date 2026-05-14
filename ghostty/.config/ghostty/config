@@ -1,0 +1,8 @@
+font-family = SauceCodePro Nerd Font Mono
+font-size = 18
+
+theme = dracula-pro-pro
+
+fullscreen = true
+
+command = /opt/homebrew/bin/tmux new-session

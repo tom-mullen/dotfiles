@@ -1,5 +1,14 @@
 #!/usr/bin/env zsh
-# Standalone dotfiles sync script for manual, tat, and hourly use
+# Standalone dotfiles sync script for manual, tat, and hourly use.
+#
+# Strategy: pull first, install anything new from the Brewfile, then dump.
+# This makes the Brewfile a union across machines — installing a package on
+# either machine will propagate to the other on the next sync.
+#
+# Removals do NOT propagate automatically: uninstalling a package locally
+# leaves it in the Brewfile, and the next sync on the other machine will
+# reinstall it. To remove a package across machines, edit the Brewfile by
+# hand (or run `brew bundle cleanup --force` knowingly).
 
 set -e
 
@@ -8,38 +17,47 @@ LOG_FILE="$HOME/Library/Logs/dotfiles-sync.log"
 
 log() { echo "[$(date)] $1" >> "$LOG_FILE" }
 
-# Ensure we have the correct PATH for Homebrew and Git
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
 log "Starting sync..."
 
 cd "$DOTFILES_DIR" || exit 1
 
-# 1. Update Brewfile
-log "Updating Brewfile..."
-brew bundle dump --force
-
-# 2. Stash local changes before pulling
-git stash --quiet
-
-# 3. Pull latest changes, abort rebase on failure
-log "Pulling changes..."
-if ! git pull --rebase --quiet; then
-    log "ERROR: Pull/rebase failed. Cleaning up and restoring stash."
-    if [[ -d .git/rebase-merge || -d .git/rebase-apply ]]; then
-        git rebase --abort
-    fi
-    git stash pop --quiet 2>/dev/null || true
+# Refuse to run if the working tree is dirty — manual changes need a manual
+# commit. Auto-sync should only ever be responsible for Brewfile drift.
+if [[ -n $(git status --porcelain) ]]; then
+    log "ERROR: working tree is dirty. Commit or discard manual changes before sync."
+    git status --porcelain >> "$LOG_FILE"
     exit 1
 fi
 
-# 4. Restore stashed changes
-git stash pop --quiet 2>/dev/null || true
+# 1. Pull the other machine's latest Brewfile (and anything else) first.
+log "Pulling changes..."
+if ! git pull --rebase --quiet; then
+    log "ERROR: pull/rebase failed. Aborting."
+    if [[ -d .git/rebase-merge || -d .git/rebase-apply ]]; then
+        git rebase --abort
+    fi
+    exit 1
+fi
 
-# 5. Commit and push if there are changes
+# 2. Install anything in the Brewfile that isn't yet installed locally.
+#    --no-upgrade keeps already-installed packages at their current version.
+log "Installing missing packages from Brewfile..."
+brew bundle install --no-upgrade --file="$DOTFILES_DIR/Brewfile" >> "$LOG_FILE" 2>&1 || {
+    log "WARN: brew bundle install reported errors (continuing)."
+}
+
+# 3. Dump current install set back to the Brewfile. After step 2 the local
+#    install set is a superset of the pulled Brewfile, so this dump produces
+#    the union (pulled entries + anything newly installed on this machine).
+log "Dumping Brewfile..."
+brew bundle dump --force --file="$DOTFILES_DIR/Brewfile"
+
+# 4. Commit and push if the dump changed anything.
 if [[ -n $(git status --porcelain) ]]; then
     log "Changes detected. Pushing..."
-    git add -A
+    git add Brewfile
     git commit -m "chore: auto-sync [$(date +'%Y-%m-%d %H:%M:%S')]" --quiet
     git push --quiet
     log "Sync complete."

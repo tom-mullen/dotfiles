@@ -25,7 +25,7 @@ set gdefault " assume the /g flag on :s substitutions to replace all matches
 set incsearch
 set laststatus=2  " always show status line.
 set list " use :set list! to toggle visible whitespace on/off
-set listchars=nbsp:¬,tab:>-,trail:•,extends:➮
+set listchars=nbsp:¬,tab:\ \ ,trail:•,extends:➮
 set modeline " bash-like filenames completion
 set nobackup
 set nowritebackup

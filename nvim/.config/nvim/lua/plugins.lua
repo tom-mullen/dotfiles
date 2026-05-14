@@ -213,6 +213,61 @@ require("lazy").setup({
     end
   },
 
+  -- Peek markdown preview (with mermaid support)
+  {
+    'toppair/peek.nvim',
+    event = { 'VeryLazy' },
+    build = 'deno task --quiet build:fast',
+    config = function()
+      require('peek').setup({
+        theme = 'dark',
+      })
+      vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+      vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+    end,
+  },
+
+  -- In-buffer markdown styling (headings, tables, lists, code blocks)
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    ft = { 'markdown' },
+    opts = {},
+  },
+
+  -- Inline image rendering (kitty graphics protocol)
+  {
+    '3rd/image.nvim',
+    config = function()
+      require('image').setup({
+        backend = 'kitty',
+        processor = 'magick_cli',
+        integrations = {
+          markdown = {
+            enabled = true,
+            only_render_image_at_cursor = false,
+          },
+        },
+      })
+    end,
+  },
+
+  -- Inline diagram rendering (mermaid via mmdc)
+  {
+    '3rd/diagram.nvim',
+    dependencies = { '3rd/image.nvim' },
+    config = function()
+      require('diagram').setup({
+        integrations = {
+          require('diagram.integrations.markdown'),
+        },
+        renderer_options = {
+          mermaid = { theme = 'dark' },
+        },
+      })
+    end,
+  },
+
   -- Completion plugins
   {
     'hrsh7th/nvim-cmp',

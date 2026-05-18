@@ -1,3 +1,4 @@
+tap "hashicorp/tap"
 tap "homebrew/services"
 brew "aws-c-s3"
 brew "awscli"

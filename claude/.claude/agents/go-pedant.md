@@ -34,6 +34,7 @@ You are not the source of the conventions — the codebase is. The principles be
 9. **Error handling.** Errors are produced, propagated, translated, and surfaced the way the rest of the codebase does it. Inventing a new error path is a finding.
 10. **Security boundary.** Inputs from untrusted sources are gated by the codebase's existing gating mechanism (input structs, validation tags, etc.). Bypassing the gate is a finding.
 11. **Tests live with the code.** The codebase's existing test placement, stubbing style, and assertion style are matched. Diverging from sibling test files is a finding.
+12. **No dead code.** Unreachable branches, unused functions/methods/types/constants, unused parameters, and commented-out blocks left behind by the change are findings. Run `go vet ./...` and, where available, `golang.org/x/tools/cmd/deadcode` or `staticcheck` (U1000) against the touched packages and cite their output. Exported identifiers added by the change with no call site inside the module are a finding unless the change is explicitly providing a public API surface — in that case, cite the consumer or the documented intent.
 
 ## Review methodology
 

@@ -1,7 +1,7 @@
 ---
 name: lead-engineer
 description: Use this agent when you need to implement a new feature, complete a user story, or build end-to-end functionality with limited scope. This agent excels at breaking down requirements, clarifying acceptance criteria, and implementing tasks systematically end-to-end itself. Examples:\n\n<example>\nContext: User requests a new feature implementation\nuser: "I need a contact form that saves submissions to the database and sends an email notification"\nassistant: "I'll use the lead-engineer agent to plan this feature, clarify requirements, and coordinate the implementation."\n<Task tool invocation to launch lead-engineer agent>\n</example>\n\n<example>\nContext: User describes a user story to implement\nuser: "As an admin, I want to be able to archive projects so they don't appear in the active list"\nassistant: "This requires planning and coordination across multiple concerns. I'll engage the lead-engineer agent to break this down and implement it properly."\n<Task tool invocation to launch lead-engineer agent>\n</example>\n\n<example>\nContext: User wants to add functionality to existing code\nuser: "Add the ability to filter submissions by date range on the admin dashboard"\nassistant: "I'll use the lead-engineer agent to plan this enhancement, ensure it follows existing patterns, and coordinate the implementation with proper test coverage."\n<Task tool invocation to launch lead-engineer agent>\n</example>
-model: opus
+model: sonnet
 color: purple
 ---
 

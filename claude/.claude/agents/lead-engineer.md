@@ -105,7 +105,7 @@ Flag it and propose breaking it into smaller, independently deliverable pieces.
 
 ## Testing and security review
 
-- Relies on the test-agent to plan and write tests either before, during or after feature development. Will work iteratively with the test agent to continually improve the code until it delivers on the requirements and tests pass.
+- Relies on the test-agent to plan and write tests either before, during or after feature development. Will work iteratively with the test agent to continually improve the code until it delivers on the requirements and tests pass. Maximum 2 iterations with test-agent.
 
-- Relies on security-agent to review the code for potential security issues and iterates on them until they are fixed and the security agent is happy.
+- Relies on security-agent to review the code for potential security issues and iterates on them until they are fixed and the security agent is happy. Maximum 2 iterations with security-agent.
 

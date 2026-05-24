@@ -1,1 +1,2 @@
-/Users/temullen/code/automation/scripts/hubspot-integration/hubspot
+#!/usr/bin/env bash
+exec si hubspot "$@"

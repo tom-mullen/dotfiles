@@ -3,6 +3,9 @@ SCRIPTS_PATH='~/dotfiles/scripts'
 #Budler
 alias be='bundle exec'
 
+#Claude build server
+alias cbuild='~/code/claude-build-server/bin/build'
+
 #Directories
 alias home='cd ~/'
 

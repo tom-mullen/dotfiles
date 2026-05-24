@@ -1,0 +1,47 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(go test:*)",
+      "Bash(go vet:*)",
+      "Bash(go build:*)",
+      "Bash(go run:*)",
+      "Bash(go fmt:*)",
+      "Bash(go doc:*)",
+      "Bash(go list:*)",
+      "Bash(go mod tidy)",
+      "Bash(golangci-lint:*)",
+      "Bash(goimports:*)",
+      "Bash(staticcheck:*)",
+      "Bash(gosec:*)",
+      "Bash(deadcode:*)",
+      "Bash(task:*)",
+      "Bash(lefthook:*)",
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git status:*)",
+      "Bash(git show:*)",
+      "Bash(git blame:*)",
+      "Bash(git branch:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true
+  },
+  "theme": "dark",
+  "agents": {
+    "git-expert": {
+      "source": "~/.claude/agents/git-expert.md"
+    },
+    "lead-engineer": {
+      "source": "~/.claude/agents/lead-engineer.md"
+    },
+    "security-reviewer": {
+      "source": "~/.claude/agents/security-reviewer.md"
+    },
+    "test-writer": {
+      "source": "~/.claude/agents/test-writer.md"
+    }
+  }
+}

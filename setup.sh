@@ -80,6 +80,16 @@ for package in $PACKAGES; do
     stow -d "$DOTFILES_DIR" -t "$HOME" "$package"
 done
 
+# Optional: wire team-shared Claude agents and skills from ~/code/automation.
+# Soft dependency — dotfiles works without it, but is enhanced when present.
+AUTOMATION_CLAUDE_INSTALLER="$HOME/code/automation/onboarding/claude/install.sh"
+if [[ -x "$AUTOMATION_CLAUDE_INSTALLER" ]]; then
+    echo "🤖 Wiring team Claude agents and skills from ~/code/automation..."
+    "$AUTOMATION_CLAUDE_INSTALLER"
+else
+    echo "ℹ️  Skipping team Claude wiring — clone ~/code/automation and re-run to enable."
+fi
+
 # Set up hourly dotfiles sync (macOS only)
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "⏰ Setting up hourly dotfiles sync..."

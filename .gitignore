@@ -9,3 +9,6 @@ access_tokens.db
 credentials.db
 adc.json
 .boto
+
+# Built si CLI binary (from ~/code/automation/cli)
+bin/bin/si

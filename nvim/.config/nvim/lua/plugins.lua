@@ -95,6 +95,10 @@ require("lazy").setup({
     config = function()
       require('nvim-treesitter.configs').setup {
         auto_install = true,
+        ensure_installed = { 'markdown', 'markdown_inline' },
+        highlight = {
+          enable = true
+        },
         indent = {
           enable = true
         },
@@ -268,6 +272,38 @@ require("lazy").setup({
     end,
   },
 
+  -- vim-dadbod: in-editor SQL client (Postgres + SQL Server via sqlcmd)
+  {
+    'kristijanhusak/vim-dadbod-ui',
+    dependencies = {
+      { 'tpope/vim-dadbod', lazy = true },
+      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+    },
+    cmd = { 'DBUI', 'DBUIToggle', 'DBUIAddConnection', 'DBUIFindBuffer' },
+    init = function()
+      vim.g.db_ui_use_nerd_fonts = 1
+      vim.g.db_ui_show_database_icon = 1
+      vim.g.db_ui_win_position = 'left'
+      vim.g.db_ui_winwidth = 35
+      -- Persist saved query buffers across sessions.
+      vim.g.db_ui_save_location = vim.fn.stdpath('data') .. '/db_ui'
+      -- Optional declarative connections from a file OUTSIDE this repo, so
+      -- credentials never live in the dotfiles tree. Copy the template:
+      --   ~/.config/db/connections.lua.example -> ~/.config/db/connections.lua
+      -- (Alternatively, skip the file and use :DBUIAddConnection at runtime.)
+      local conn_file = vim.fn.expand('~/.config/db/connections.lua')
+      if vim.fn.filereadable(conn_file) == 1 then
+        local chunk = loadfile(conn_file)
+        local ok, dbs = pcall(chunk)
+        if ok and type(dbs) == 'table' then
+          vim.g.dbs = dbs
+        else
+          vim.notify('dbs: failed to load ' .. conn_file, vim.log.levels.WARN)
+        end
+      end
+    end,
+  },
+
   -- Completion plugins
   {
     'hrsh7th/nvim-cmp',
@@ -280,7 +316,7 @@ require("lazy").setup({
       'saadparwaiz1/cmp_luasnip',
     },
     config = function()
-      require('completion')
+      require('completion_config')
     end
   },
 }, {

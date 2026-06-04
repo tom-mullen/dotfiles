@@ -53,3 +53,18 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
+
+-- Schema-aware completion in SQL buffers via vim-dadbod-completion.
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'sql', 'mysql', 'plsql' },
+  callback = function()
+    cmp.setup.buffer({
+      sources = cmp.config.sources({
+        { name = 'vim_dadbod_completion' },
+      }, {
+        { name = 'luasnip' },
+        { name = 'buffer' },
+      }),
+    })
+  end,
+})

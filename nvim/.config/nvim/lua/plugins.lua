@@ -89,23 +89,22 @@ require("lazy").setup({
   },
 
   -- Treesitter
+  -- `main` branch: `master` is frozen and breaks on Neovim 0.12. `main` has no
+  -- configs.setup; highlighting and indent are switched on per buffer.
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    lazy = false,
     build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup {
-        auto_install = true,
-        ensure_installed = { 'markdown', 'markdown_inline' },
-        highlight = {
-          enable = true
-        },
-        indent = {
-          enable = true
-        },
-        endwise = {
-          enable = true
-        }
-      }
+      require('nvim-treesitter').install({ 'markdown', 'markdown_inline' })
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function(args)
+          if pcall(vim.treesitter.start, args.buf) then
+            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
+      })
     end
   },
 
@@ -285,6 +284,11 @@ require("lazy").setup({
       vim.g.db_ui_show_database_icon = 1
       vim.g.db_ui_win_position = 'left'
       vim.g.db_ui_winwidth = 35
+      -- dracula_pro is loaded with g:dracula_colorterm=0, so `Normal` has no
+      -- background (terminal-managed). DBUI derives its float notification
+      -- colours from Normal's bg; finding none, it falls back to white-on-white
+      -- for info popups. Route notifications through the cmdline instead.
+      vim.g.db_ui_force_echo_notifications = 1
       -- Persist saved query buffers across sessions.
       vim.g.db_ui_save_location = vim.fn.stdpath('data') .. '/db_ui'
       -- Optional declarative connections from a file OUTSIDE this repo, so

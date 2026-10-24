@@ -23,6 +23,13 @@ log "Starting sync..."
 
 cd "$DOTFILES_DIR" || exit 1
 
+# Only sync master. On a feature branch the Brewfile commit would land on
+# that branch and be pushed with it.
+if [[ $(git branch --show-current) != master ]]; then
+    log "SKIP: not on master."
+    exit 0
+fi
+
 # Refuse to run if the working tree is dirty — manual changes need a manual
 # commit. Auto-sync should only ever be responsible for Brewfile drift.
 if [[ -n $(git status --porcelain) ]]; then

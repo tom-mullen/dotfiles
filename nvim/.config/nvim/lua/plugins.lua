@@ -90,18 +90,29 @@ require("lazy").setup({
 
   -- Treesitter
   -- `main` branch: `master` is frozen and breaks on Neovim 0.12. `main` has no
-  -- configs.setup; highlighting and indent are switched on per buffer.
+  -- configs.setup or auto_install; highlighting and indent are switched on per
+  -- buffer, and a missing parser is installed the first time its filetype opens.
+  -- markdown_inline is only injected, so it never gets a FileType of its own.
   {
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
     lazy = false,
     build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter').install({ 'markdown', 'markdown_inline' })
+      local ts = require('nvim-treesitter')
+      ts.install({ 'markdown', 'markdown_inline' })
       vim.api.nvim_create_autocmd('FileType', {
         callback = function(args)
-          if pcall(vim.treesitter.start, args.buf) then
-            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          local lang = vim.treesitter.language.get_lang(args.match) or args.match
+          local function start()
+            if vim.api.nvim_buf_is_valid(args.buf) and pcall(vim.treesitter.start, args.buf, lang) then
+              vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end
+          end
+          if vim.treesitter.language.add(lang) then
+            start()
+          elseif vim.list_contains(ts.get_available(), lang) then
+            ts.install(lang):await(vim.schedule_wrap(start))
           end
         end,
       })
@@ -292,8 +303,8 @@ require("lazy").setup({
       -- Persist saved query buffers across sessions.
       vim.g.db_ui_save_location = vim.fn.stdpath('data') .. '/db_ui'
       -- Optional declarative connections from a file OUTSIDE this repo, so
-      -- credentials never live in the dotfiles tree. Copy the template:
-      --   ~/.config/db/connections.lua.example -> ~/.config/db/connections.lua
+      -- credentials never live in the dotfiles tree. The file returns a table of
+      -- name = URL, e.g. `return { local_pg = 'postgresql://user@localhost/db' }`.
       -- (Alternatively, skip the file and use :DBUIAddConnection at runtime.)
       local conn_file = vim.fn.expand('~/.config/db/connections.lua')
       if vim.fn.filereadable(conn_file) == 1 then

@@ -27,6 +27,7 @@ cd "$DOTFILES_DIR" || exit 1
 # that branch and be pushed with it.
 if [[ $(git branch --show-current) != master ]]; then
     log "SKIP: not on master."
+    [[ -t 2 ]] && print -u2 "dotfiles-sync: skipped, not on master."
     exit 0
 fi
 

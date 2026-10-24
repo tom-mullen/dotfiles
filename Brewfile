@@ -94,6 +94,8 @@ brew "psqlodbc"
 brew "rclone"
 # Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
+# Persistent key-value database, with built-in net interface
+brew "redis"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Database of common MIME types
@@ -134,7 +136,12 @@ cask "google-ads-editor"
 cask "basecamp/tap/hey", trusted: true
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
+go "github.com/dkorunic/betteralign/cmd/betteralign"
 go "golang.org/x/tools/cmd/deadcode"
+go "cmd/go"
+go "golang.org/dl/go1.26.5"
+go "cmd/gofmt"
+go "mvdan.cc/gofumpt"
 go "golang.org/x/tools/cmd/goimports"
 go "github.com/pressly/goose/v3/cmd/goose"
 go "github.com/securego/gosec/v2/cmd/gosec"

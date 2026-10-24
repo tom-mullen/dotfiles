@@ -75,6 +75,14 @@ PACKAGES="alacritty bin claude docker git git_template gtk macos mise nvim rclon
 
 echo "📋 Packages to stow: $PACKAGES"
 
+# Real directories, so stow links the files inside them and not the whole
+# directory into this repo (Claude Code and the team installer write there).
+if [[ -L "$HOME/.claude" ]]; then
+    echo "❌ ~/.claude is a symlink into this repo. Replace it with a real directory, then re-run."
+    exit 1
+fi
+mkdir -p "$HOME/.claude/skills" "$HOME/.claude/agents"
+
 for package in $PACKAGES; do
     echo "   Stowing $package..."
     stow -d "$DOTFILES_DIR" -t "$HOME" "$package"

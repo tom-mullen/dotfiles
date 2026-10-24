@@ -63,6 +63,38 @@ stow -t ~ -D package_name
 stow -t ~ -R */
 ```
 
+## Personal vs Team Claude Config
+
+Team (Standard Innovation) agents and skills live in `~/code/automation/onboarding/claude/`.
+`setup.sh` runs its `install.sh`, which links each one into `~/.claude/agents` and
+`~/.claude/skills`. Do not add team items here.
+
+`install.sh` also offers to replace `~/.claude/settings.json` and `~/.claude/CLAUDE.md`
+with team starters. Answer N, and do not set `ONBOARDING_ASSUME_YES`, or the stow links to this repo are replaced and personal
+settings (e.g. plugins) stop syncing. Check with `ls -l ~/.claude/settings.json`.
+
+Personal items live in this repo:
+
+- **CLIs**: `Brewfile`
+- **Marketplace plugins** (e.g. `hey@37signals`): `enabledPlugins` and
+  `extraKnownMarketplaces` in `claude/.claude/settings.json`
+- **Skills and agents**: `claude/.claude/skills/<name>/` and `claude/.claude/agents/<name>.md`,
+  linked by stow
+
+Skills that a vendor CLI installs (e.g. `hey skill install`) are not committed. Use the
+vendor's plugin instead, and remove the vendor CLI copy so the skill does not load twice
+(for HEY: `~/.claude/skills/hey` and `~/.agents/skills/hey`).
+
+To see where a skill comes from, run `ls -l ~/.claude/skills`. The link target is the team
+repo (team), `dotfiles/...` (personal) or `~/.agents/skills/...` (vendor CLI, remove it).
+
+On a new machine, if `/plugin` does not list a plugin after the first `claude` start, run
+`claude plugin marketplace add basecamp/claude-plugins` and
+`claude plugin install hey@37signals`. Sign the HEY CLI in once with `hey auth login`.
+
+This repo is public. Keep client and org details out of it, including the `autoMode` block
+of `settings.json`.
+
 ## Requirements
 
 - macOS (tested on Apple Silicon)

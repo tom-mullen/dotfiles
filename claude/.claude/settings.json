@@ -60,7 +60,7 @@
   "autoMode": {
     "allow": [
       "$defaults",
-      "Bash(git push origin <branch>) and Bash(git -C <path> push [-u] origin <branch>) for a non-default feature branch (e.g. feat/*, fix/*, chore/*, docs/*, test/*, refactor/*), where the local and remote ref are the same feature branch (no src:dst refspec), in a Standard-Innovation GitHub repo, as a plain fast-forward push that runs the repo hooks (no --no-verify)"
+      "Bash(git push [-u] origin <branch>) and Bash(git -C <path> push [-u] origin <branch>) for a non-default feature branch (e.g. feat/*, fix/*, chore/*, docs/*, test/*, refactor/*), where the local and remote ref are the same feature branch (no src:dst refspec), in a Standard-Innovation GitHub repo, as a plain fast-forward push that runs the repo hooks (no --no-verify)"
     ],
     "soft_deny": [
       "$defaults",

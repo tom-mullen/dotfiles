@@ -70,7 +70,7 @@ Team (Standard Innovation) agents and skills live in `~/code/automation/onboardi
 `~/.claude/skills`. Do not add team items here.
 
 `install.sh` also offers to replace `~/.claude/settings.json` and `~/.claude/CLAUDE.md`
-with team starters. Answer N, or the stow links to this repo are replaced and personal
+with team starters. Answer N, and do not set `ONBOARDING_ASSUME_YES`, or the stow links to this repo are replaced and personal
 settings (e.g. plugins) stop syncing. Check with `ls -l ~/.claude/settings.json`.
 
 Personal items live in this repo:
@@ -82,10 +82,11 @@ Personal items live in this repo:
   linked by stow
 
 Skills that a vendor CLI installs (e.g. `hey skill install`) are not committed. Use the
-vendor's plugin instead, and remove the vendor CLI copy so the skill does not load twice.
+vendor's plugin instead, and remove the vendor CLI copy so the skill does not load twice
+(for HEY: `~/.claude/skills/hey` and `~/.agents/skills/hey`).
 
 To see where a skill comes from, run `ls -l ~/.claude/skills`. The link target is the team
-repo (team) or `dotfiles/...` (personal).
+repo (team), `dotfiles/...` (personal) or `~/.agents/skills/...` (vendor CLI, remove it).
 
 On a new machine, if `/plugin` does not list a plugin after the first `claude` start, run
 `claude plugin marketplace add basecamp/claude-plugins` and

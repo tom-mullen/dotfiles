@@ -92,6 +92,9 @@ On a new machine, if `/plugin` does not list a plugin after the first `claude` s
 `claude plugin marketplace add basecamp/claude-plugins` and
 `claude plugin install hey@37signals`. Sign the HEY CLI in once with `hey auth login`.
 
+This repo is public. Keep client and org details out of it, including the `autoMode` block
+of `settings.json`.
+
 ## Per-Host Files (not in this repo)
 
 - `~/.tmux.local.conf`: tmux overrides for one host, e.g. `set -g status-bg magenta`
@@ -99,9 +102,6 @@ On a new machine, if `/plugin` does not list a plugin after the first `claude` s
 - `/Library/Application Support/ClaudeCode/managed-settings.json`: the private Claude
   `autoMode` block (allow, soft_deny, environment). Claude Code reads `autoMode` only from
   user or managed settings, and the user file is this public repo.
-
-This repo is public. Keep client and org details out of it, including the `autoMode` block
-of `settings.json`.
 
 ## Requirements
 

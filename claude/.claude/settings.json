@@ -56,5 +56,17 @@
     "test-writer": {
       "source": "~/.claude/agents/test-writer.md"
     }
+  },
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(git push origin <branch>) and Bash(git -C <path> push [-u] origin <branch>) for a non-default feature branch (e.g. feat/*, fix/*, chore/*, docs/*, test/*, refactor/*) in a Standard-Innovation GitHub repo, as a plain fast-forward push that runs the repo hooks (no --no-verify)"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(si op set:*) — writes to shared 1Password vaults",
+      "Bash(kamal setup:*) and Bash(kamal deploy:*) — host provisioning and deploys of Kamal services",
+      "Bash(git push) with --force, --force-with-lease, -f, a +refspec, --no-verify, --delete or --mirror; any push to main or master; any push of tags (--tags, --follow-tags, refs/tags/*, a v* tag)"
+    ]
   }
 }

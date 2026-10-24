@@ -63,6 +63,33 @@ stow -t ~ -D package_name
 stow -t ~ -R */
 ```
 
+## Personal vs Team Claude Config
+
+Team (Standard Innovation) agents and skills live in `~/code/automation/onboarding/claude/`.
+`setup.sh` runs its `install.sh`, which links each one into `~/.claude/agents` and
+`~/.claude/skills`. Do not add team items here.
+
+Personal items live in this repo:
+
+- **CLIs**: `Brewfile`
+- **Marketplace plugins** (e.g. `hey@37signals`): `enabledPlugins` and
+  `extraKnownMarketplaces` in `claude/.claude/settings.json`
+- **Skills and agents**: `claude/.claude/skills/<name>/` and `claude/.claude/agents/<name>.md`,
+  linked by stow
+
+Skills that a vendor CLI installs (e.g. `hey skill install`) are not committed. Use the
+vendor's plugin instead.
+
+To see where a skill comes from, run `ls -l ~/.claude/skills`. The link target shows
+the team repo under `~/code/automation` (team) or `dotfiles/...` (personal).
+
+This repo is public. Keep client and org details out of it, including the `autoMode` block
+of `settings.json`.
+
+Before you add the first personal skill or agent, make sure `~/.claude/skills` and
+`~/.claude/agents` exist as real directories (`mkdir -p`). If they do not, stow links the
+whole directory into this repo, and `install.sh` then writes team links into it.
+
 ## Requirements
 
 - macOS (tested on Apple Silicon)

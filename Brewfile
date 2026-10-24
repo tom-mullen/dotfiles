@@ -1,3 +1,4 @@
+tap "basecamp/tap"
 tap "hashicorp/tap"
 tap "homebrew/services"
 brew "autoconf"
@@ -51,6 +52,7 @@ cask "1password-cli"
 cask "alacritty"
 cask "gcloud-cli"
 cask "google-ads-editor"
+cask "basecamp/tap/hey", trusted: true
 cask "ngrok"
 go "golang.org/x/tools/cmd/deadcode"
 go "golang.org/x/tools/cmd/goimports"

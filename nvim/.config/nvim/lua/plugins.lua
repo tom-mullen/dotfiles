@@ -99,8 +99,15 @@ require("lazy").setup({
     lazy = false,
     build = ':TSUpdate',
     config = function()
+      -- Parsers that the master branch built inside the plugin dir come first
+      -- on the runtimepath and shadow the version-matched ones in site/.
+      local legacy = vim.fn.stdpath('data') .. '/lazy/nvim-treesitter/'
+      vim.fn.delete(legacy .. 'parser', 'rf')
+      vim.fn.delete(legacy .. 'parser-info', 'rf')
+
       local ts = require('nvim-treesitter')
       ts.install({ 'markdown', 'markdown_inline' })
+      local tried = {}
       vim.api.nvim_create_autocmd('FileType', {
         callback = function(args)
           local lang = vim.treesitter.language.get_lang(args.match) or args.match
@@ -111,7 +118,8 @@ require("lazy").setup({
           end
           if vim.treesitter.language.add(lang) then
             start()
-          elseif vim.list_contains(ts.get_available(), lang) then
+          elseif not tried[lang] and vim.list_contains(ts.get_available(), lang) then
+            tried[lang] = true -- one attempt per session, so offline is not noisy
             ts.install(lang):await(vim.schedule_wrap(start))
           end
         end,

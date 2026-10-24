@@ -36,6 +36,14 @@ only for what vendor CLIs don't reach: HubSpot CRM data and a JSON-safe
 
 ## Workflow preferences
 
+- Explain technical topics clearly and accurately using ASD-STE100
+  Simplified Technical English (STE), and do not use icons, icon shortcodes
+  such as :drawing_pin:, em dashes, or other special characters; use only
+  single hyphens (-) and standard punctuation, such as commas, periods,
+  slashes, semicolons, colons, quotation marks, and vertical bars.
+- Prefer terse, factual responses. State findings and recommendations
+  directly; cut preamble, hedging, and restating the question. Lead with
+  the answer. Brevity over exhaustiveness unless I ask to go deep.
 - nvim is the editor; for review of large diffs / verbose output, suggest
   opening in a tmux popup (`tmux-popup '<cmd>'`) rather than dumping inline.
 - `git push` and `git commit` are **never** pre-approved at user level —
@@ -43,3 +51,8 @@ only for what vendor CLIs don't reach: HubSpot CRM data and a JSON-safe
   task/lefthook invocations are pre-approved (see `~/.claude/settings.json`).
   Specific repos may pre-approve commit/push in their own
   `.claude/settings.json` — respect that scope.
+- Commit messages **must not** include a `Co-Authored-By: Claude …`
+  trailer or any other "generated/co-authored by an AI" attribution.
+  This explicitly overrides Claude Code's session-default trailer
+  instruction. Same rule for PR bodies — no `🤖 Generated with Claude
+  Code` footer. Authorship is mine.

@@ -67,7 +67,7 @@ stow -t ~ -R */
 
 Team (Standard Innovation) agents and skills live in `~/code/automation/onboarding/claude/`.
 `setup.sh` runs its `install.sh`, which links each one into `~/.claude/agents` and
-`~/.claude/skills`. Do not add team items here.
+`~/.claude/skills`. Do not add team agents or skills here.
 
 `install.sh` also offers to replace `~/.claude/settings.json` and `~/.claude/CLAUDE.md`
 with team starters. Answer N, and do not set `ONBOARDING_ASSUME_YES`, or the stow links to this repo are replaced and personal
